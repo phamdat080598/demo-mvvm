@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="idSubject">Mã môn</string>
+    <string name="example">example</string>
+    <string name="nameSubject">Tên môn</string>
+    <string name="credits">Số tín chỉ</string>
+</resources>

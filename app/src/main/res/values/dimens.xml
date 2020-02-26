@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="elevation">6dp</dimen>
+    <dimen name="cornerRadius">8dp</dimen>
+    <dimen name="paddingComponent">8dp</dimen>
+    <dimen name="marginComponentLarge">16dp</dimen>
+    <dimen name="marginComponent">8dp</dimen>
+</resources>
