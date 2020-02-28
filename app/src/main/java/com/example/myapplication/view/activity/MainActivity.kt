@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private var category = Category()
 
-    private lateinit var viewModel : CategoryViewModel
+    private  val viewModel by lazy {ViewModelProviders.of(this).get(CategoryViewModel::class.java)}
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +24,11 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
-        viewModel = ViewModelProviders.of(this).get(CategoryViewModel::class.java)
         binding.category=category
         binding.lifecycleOwner=this
+
         observeViewModel()
+
         viewModel.getCategoryById("18","Bearer CMfqypJoyUxqo6qkF0vI")
     }
 

@@ -10,7 +10,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class CategoryRepository(private val composite: CompositeDisposable) {
+class CategoryRepository() {
+
+    private val composite=CompositeDisposable()
 
     private val _category = MutableLiveData<Category>()
     val category : LiveData<Category>
@@ -40,5 +42,9 @@ class CategoryRepository(private val composite: CompositeDisposable) {
     private fun onGetCategoryByIdFail(error:String,t:Throwable){
         _messageResponse.value = error
         Log.d("onGetCategoryByIdFail",t.localizedMessage)
+    }
+
+    fun disponse(){
+        composite.dispose()
     }
 }

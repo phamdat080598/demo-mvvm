@@ -4,12 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.mvvm.model.Category
 import com.example.myapplication.repository.CategoryRepository
-import io.reactivex.disposables.CompositeDisposable
 
 class CategoryViewModel : ViewModel() {
 
-    private val composite = CompositeDisposable()
-    private val repository = CategoryRepository(composite) // chỗ này phải xem lại
+    private val repository = CategoryRepository() // chỗ này phải xem lại
 
     val category : LiveData<Category> by lazy {
         repository.category
@@ -24,7 +22,7 @@ class CategoryViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        composite.dispose()
+        repository.disponse()
     }
 
 }
