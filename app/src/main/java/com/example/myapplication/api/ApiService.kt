@@ -1,13 +1,11 @@
 package com.example.myapplication.api
 
-import com.example.myapplication.mvvm.model.SubjectsResponse
+import com.example.myapplication.mvvm.model.CategoryResponse
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
-    @FormUrlEncoded
-    @POST("qlsv/get_khungdaotao.php")
-    fun getAllSubject(@Field("id") id: String): Observable<SubjectsResponse>
+    @GET("api/category/{id}")
+    fun getCateDetail(@Path("id") id: String, @Header("Authorization") Authorization: String)
+            : Observable<CategoryResponse>
 }

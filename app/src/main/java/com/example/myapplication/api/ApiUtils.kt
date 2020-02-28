@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 class ApiUtils {
     companion object{
-        const val BASE_URL=""
+        const val BASE_URL="https://hp102group.vn/"
         fun getApiService():ApiService{
             val okHttpClient=OkHttpClient.Builder()
                 .connectTimeout(60,TimeUnit.SECONDS)
