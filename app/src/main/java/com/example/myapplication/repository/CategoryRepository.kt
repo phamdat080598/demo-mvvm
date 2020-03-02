@@ -35,7 +35,7 @@ class CategoryRepository() {
     private fun onGetCategoryByIdSucess(response: CategoryResponse){
         if(response.success==1){
             _category.value = response.data
-            Log.d("onGetCategoryByIdFail",response.success.toString())
+            Log.d("onGetCategoryByIdSucess",response.success.toString())
         }
     }
 
@@ -44,7 +44,7 @@ class CategoryRepository() {
         Log.d("onGetCategoryByIdFail",t.localizedMessage)
     }
 
-    fun disponse(){
+    fun dispose(){
         composite.dispose()
     }
 }

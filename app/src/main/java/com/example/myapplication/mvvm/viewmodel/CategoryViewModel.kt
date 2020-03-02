@@ -1,17 +1,22 @@
 package com.example.myapplication.mvvm.viewmodel
 
+import androidx.databinding.Bindable
+import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import com.example.myapplication.mvvm.model.Category
+import com.example.myapplication.mvvm.ObservableViewModel
 import com.example.myapplication.repository.CategoryRepository
 
-class CategoryViewModel : ViewModel() {
+class CategoryViewModel : ObservableViewModel() {
 
-    private val repository = CategoryRepository() // chỗ này phải xem lại
+    private val repository = CategoryRepository()
 
-    val category : LiveData<Category> by lazy {
-        repository.category
-    }
+    @get:Bindable
+    var category  = repository.category
+        set(value) {
+            field=value
+            notifyPropertyChanged(BR.category)
+        }
+
     val messageResponse : LiveData<String> by lazy {
         repository.messageResponse
     }
@@ -22,7 +27,7 @@ class CategoryViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        repository.disponse()
+        repository.dispose()
     }
 
 }

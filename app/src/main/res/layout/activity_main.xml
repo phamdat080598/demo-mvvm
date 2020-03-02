@@ -6,7 +6,7 @@
     <data>
         <variable
             name="category"
-            type="com.example.myapplication.mvvm.model.Category" />
+            type="com.example.myapplication.mvvm.viewmodel.CategoryViewModel" />
     </data>
     <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
@@ -31,7 +31,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:text="@{category.id}"
+                android:text="@{category.category.id}"
                 />
         </LinearLayout>
         <LinearLayout
@@ -51,7 +51,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:text="@{category.name}"
+                android:text="@{category.category.name}"
                 />
         </LinearLayout>
         <LinearLayout
@@ -71,7 +71,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:text="@{category.type}"
+                android:text="@{category.category.type}"
                 />
         </LinearLayout>
         <LinearLayout
@@ -91,7 +91,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:text="@{category.image}"
+                android:text="@{category.category.image}"
                 />
         </LinearLayout>
     </LinearLayout>
