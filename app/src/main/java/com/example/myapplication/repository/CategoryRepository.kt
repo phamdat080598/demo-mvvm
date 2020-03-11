@@ -6,45 +6,27 @@ import androidx.lifecycle.MutableLiveData
 import com.example.myapplication.api.ApiUtils
 import com.example.myapplication.mvvm.model.Category
 import com.example.myapplication.mvvm.model.CategoryResponse
+import com.example.myapplication.mvvm.utils.ShowError
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.withTimeout
 
 class CategoryRepository() {
-
-    private val composite=CompositeDisposable()
 
     private val _category = MutableLiveData<Category>()
     val category : LiveData<Category>
         get() = _category
 
-    private val _messageResponse = MutableLiveData<String>()
-    val messageResponse : LiveData<String>
-        get() = _messageResponse
-
-    fun getCategoryById(id:String,token:String){
-        composite.add(ApiUtils.getApiService().getCateDetail(id,token)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(this::onGetCategoryByIdSucess){
-                t -> onGetCategoryByIdFail("Không lấy được category",t)
+    suspend fun getCategoryById(id:String, token:String){
+        try {
+            val result : CategoryResponse =  withTimeout(5000) {
+                ApiUtils.getApiService().getCateDetail(id, token)
             }
-        )
-    }
-
-    private fun onGetCategoryByIdSucess(response: CategoryResponse){
-        if(response.success==1){
-            _category.value = response.data
-            Log.d("onGetCategoryByIdSucess",response.success.toString())
+            _category.value = result.data
+        }catch (t:Throwable){
+            throw ShowError("không lấy được category",t)
         }
     }
 
-    private fun onGetCategoryByIdFail(error:String,t:Throwable){
-        _messageResponse.value = error
-        Log.d("onGetCategoryByIdFail",t.localizedMessage)
-    }
-
-    fun dispose(){
-        composite.dispose()
-    }
 }

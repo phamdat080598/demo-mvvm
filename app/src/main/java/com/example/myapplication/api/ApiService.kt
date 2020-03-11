@@ -6,6 +6,6 @@ import retrofit2.http.*
 
 interface ApiService {
     @GET("api/category/{id}")
-    fun getCateDetail(@Path("id") id: String, @Header("Authorization") Authorization: String)
-            : Observable<CategoryResponse>
+    suspend fun getCateDetail(@Path("id") id: String, @Header("Authorization") Authorization: String)
+            : CategoryResponse
 }
