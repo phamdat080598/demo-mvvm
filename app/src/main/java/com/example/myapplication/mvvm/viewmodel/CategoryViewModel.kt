@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.myapplication.mvvm.ObservableViewModel
 import com.example.myapplication.mvvm.utils.ShowError
 import com.example.myapplication.repository.CategoryRepository
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 class CategoryViewModel : ObservableViewModel() {
@@ -38,5 +39,10 @@ class CategoryViewModel : ObservableViewModel() {
 
     fun getCategoryById(id: String, token: String) = launchLoadData{
         repository.getCategoryById(id, token)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.cancel()
     }
 }

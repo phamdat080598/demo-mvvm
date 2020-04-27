@@ -20,10 +20,14 @@ class CategoryRepository() {
 
     suspend fun getCategoryById(id:String, token:String){
         try {
-            val result : CategoryResponse =  withTimeout(5000) {
-                ApiUtils.getApiService().getCateDetail(id, token)
+            val api = ApiUtils.getApiService().getCateDetail(id,token)
+            when(api.raw().code()){
+                200,201 ->  _category.value= api.body()!!.data
             }
-            _category.value = result.data
+//            val result : CategoryResponse =  withTimeout(5000) {
+//                ApiUtils.getApiService().getCateDetail(id, token)
+//            }
+//
         }catch (t:Throwable){
             throw ShowError("không lấy được category",t)
         }
